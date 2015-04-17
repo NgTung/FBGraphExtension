@@ -1,29 +1,29 @@
 {
-  "name": "Facebook graph tool auto fill",
-  "description": "Auto fill fields from synclog string",
+  "name": "Facebook Graph Tool Auto Fill",
+  "description": "Auto fill data into FaceBook graph tool's fields from synclog string",
   "version": "0.1",
   "manifest_version": 2,
   "permissions": [
     "https://developers.facebook.com/*"
   ],
-  "background": {
-      "persistent": false,
-      "scripts": ["background.js"]
-  },
   "icons": {
       "16"  : "icon.png",
       "48"  : "icon.png",
       "128" : "icon.png"
+  },
+  "browser_action": {
+      "default_title": "Facebook Graph Tool Auto Fill.",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "background": {
+      "persistent": false,
+      "scripts": ["background.js"]
   },
   "content_scripts": [{
       "matches": ["https://developers.facebook.com/*"],
       "js": ["content.js"],
       "run_at": "document_idle",
       "all_frames": false
-   }],
-  "browser_action": {
-      "default_title": "Facebook Graph Tool Auto Fill.",
-      "default_icon": "icon.png",
-      "default_popup": "popup.html"
-  } 
+   }]
 }

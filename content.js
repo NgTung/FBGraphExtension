@@ -1,19 +1,19 @@
+function fireEvent(obj, event){
+	var fireOnThis = obj;
+
+	if( document.createEvent ) {
+		var evObj = document.createEvent('MouseEvents');
+
+		evObj.initEvent(event, true, false);
+		fireOnThis.dispatchEvent(evObj);
+	}
+}
+
+function splitString (string, pattern) {
+	return string.split(pattern);
+}
+
 chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
-	function fireEvent(obj, event){
-		var fireOnThis = obj;
-
-		if( document.createEvent ) {
-			var evObj = document.createEvent('MouseEvents');
-
-			evObj.initEvent(event, true, false);
-			fireOnThis.dispatchEvent(evObj);
-		}
-	}
-
-	function splitString (string, pattern) {
-		return string.split(pattern);
-	}
-
 	var dataArr = splitString(data, '&');
 
 	//reset post var fields
@@ -25,11 +25,11 @@ chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
 
 		// set value
 		var postVarWrapper = document.getElementsByClassName('mts postvar');
-		var key = postVarWrapper[i].getElementsByTagName('input');
-		var value = postVarWrapper[i].getElementsByTagName('textarea');
-		var tmpData = splitString(dataArr[i], '=');
+		var keyField = postVarWrapper[i].getElementsByTagName('input');
+		var valueField = postVarWrapper[i].getElementsByTagName('textarea');
+		var dataFields = splitString(dataArr[i], '=');
 
-		key[0].value = tmpData[0];
-		value[0].value = tmpData[1];
+		keyField[0].value = dataFields[0];
+		valueField[0].value = dataFields[1];
 	}
 });
