@@ -1,0 +1,13 @@
+function fireEvent(obj, evt){
+     var fireOnThis = obj;
+
+     if( document.createEvent ) {
+       var evObj = document.createEvent('MouseEvents');
+       evObj.initEvent( evt, true, false );
+       fireOnThis.dispatchEvent( evObj );
+     }
+}
+
+fireEvent(document.getElementById('postvar_add'),'click');
+
+

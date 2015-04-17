@@ -1,0 +1,24 @@
+{
+  "name": "Facebook graph tool auto fill",
+  "description": "Auto fill fields from synclog string",
+  "version": "0.1",
+  "manifest_version": 2,
+  "permissions": [
+    "tabs", "https://developers.facebook.com/*"
+  ],
+  "background": {
+      "persistent": false,
+      "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+   }],
+  "browser_action": {
+      "default_title": "Facebook Graph Tool Auto Fill.",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  } 
+}
